@@ -154,3 +154,4 @@ while True:
         for e in pygame.event.get():
                 if e.type == pygame.QUIT:
                         sys.exit(0)
+        print ("HueHueHueHue")
