@@ -1,6 +1,5 @@
 import pygame
 import sys
-
 pygame.init()
 surface = pygame.display.set_mode((1000,1000))
 clock = pygame.time.Clock()
@@ -34,42 +33,42 @@ tetrimino[5][1]=(145, 0, 226)
 tetrimino[4][1]=(145, 0, 226)
 tetrimino[6][1]=(145, 0, 226)
                                 
-lshape1 = [[None for topdown in range(21)] for sidetoside in range(10)]
-lshape1[6][0]=(212, 89, 0)
-lshape1[6][1]=(212, 89, 0)                                
-lshape1[5][1]=(212, 89, 0)                                
-lshape1[4][1]=(212, 89, 0)
+Lshape1 = [[None for topdown in range(21)] for sidetoside in range(10)]
+Lshape1[6][0]=(212, 89, 0)
+Lshape1[6][1]=(212, 89, 0)                                
+Lshape1[5][1]=(212, 89, 0)                                
+Lshape1[4][1]=(212, 89, 0)
 
-squiggle1 = [[None for topdown in range(21)] for sidetoside in range(10)]
-squiggle1[4][0]=(183, 13, 0)
-squiggle1[5][0]=(183, 13, 0)                                
-squiggle1[5][1]=(183, 13, 0)                              
-squiggle1[6][1]=(183, 13, 0)
+Squiggle1 = [[None for topdown in range(21)] for sidetoside in range(10)]
+Squiggle1[4][0]=(183, 13, 0)
+Squiggle1[5][0]=(183, 13, 0)                                
+Squiggle1[5][1]=(183, 13, 0)                              
+Squiggle1[6][1]=(183, 13, 0)
 
 
-squiggle2 = [[None for topdown in range(21)] for sidetoside in range(10)]
-squiggle2[5][0]=(51, 171, 0)
-squiggle2[6][0]=(51, 171, 0)                                
-squiggle2[5][1]=(51, 171, 0)                              
-squiggle2[4][1]=(51, 171, 0)
+Squiggle2 = [[None for topdown in range(21)] for sidetoside in range(10)]
+Squiggle2[5][0]=(51, 171, 0)
+Squiggle2[6][0]=(51, 171, 0)                                
+Squiggle2[5][1]=(51, 171, 0)                              
+Squiggle2[4][1]=(51, 171, 0)
 
-line = [[None for topdown in range(21)] for sidetoside in range(10)]
-line[4][0]=(97, 230, 255)
-line[5][0]=(97, 230, 255)                               
-line[6][0]=(97, 230, 255)                            
-line[7][0]=(97, 230, 255)
+Line = [[None for topdown in range(21)] for sidetoside in range(10)]
+Line[4][0]=(97, 230, 255)
+Line[5][0]=(97, 230, 255)                               
+Line[6][0]=(97, 230, 255)                            
+Line[7][0]=(97, 230, 255)
 
-line = [[None for topdown in range(21)] for sidetoside in range(10)]
-line[4][0]=(97, 230, 255)
-line[5][0]=(97, 230, 255)                               
-line[6][0]=(97, 230, 255)                            
-line[7][0]=(97, 230, 255)
+Box = [[None for topdown in range(21)] for sidetoside in range(10)]
+Box[5][0]=(243, 247, 0)
+Box[6][0]=(243, 247, 0)                              
+Box[5][1]=(243, 247, 0)                         
+Box[6][1]=(243, 247, 0)
 
-box = [[None for topdown in range(21)] for sidetoside in range(10)]
-box[5][0]=(243, 247, 0)
-box[6][0]=(243, 247, 0)                              
-box[5][1]=(243, 247, 0)                         
-box[6][1]=(243, 247, 0)
+Lshape2 = [[None for topdown in range(21)] for sidetoside in range(10)]
+Lshape2[4][0]=(33, 62, 210)
+Lshape2[4][1]=(33, 62, 210)                              
+Lshape2[5][1]=(33, 62, 210)                        
+Lshape2[6][1]=(33, 62, 210)
 
 def nextpiece():
         futuredisplay = [[None for topdown1 in range(5)] for sidetoside1 in range(1)]
@@ -146,7 +145,7 @@ while True:
         surface.fill((255,255,255))
         drawalayer(background)
         movepiece()
-        drawalayer(box)
+        drawalayer(Lshape2)
         ol()
         nextpiece()
         drawalayer(foreground)
