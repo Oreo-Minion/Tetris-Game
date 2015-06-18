@@ -138,7 +138,14 @@ def ol():
         width8 = 10
         pygame.draw.line(surface, color8, start_pos8, end_pos8, width8)
 
-
+def movingpieces():
+        for e in pygame.event.get():
+                if e.type ==pygame.QUIT:
+                        return
+                elif e.type == pygame.KEYDOWN:
+                        print(e.key)
+                        if e.key == K_LEFT:
+                                print ("I GOT THIS BOSS")
         
 
 while True:
@@ -150,8 +157,8 @@ while True:
         nextpiece()
         drawalayer(foreground)
         pygame.display.flip()
+        movingpieces()
         clock.tick(60)                        
         for e in pygame.event.get():
                 if e.type == pygame.QUIT:
                         sys.exit(0)
-        print ("HueHueHueHue")
