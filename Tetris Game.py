@@ -10,22 +10,42 @@ background[0][1] = (255,0, 0)
 background[0][20] = (0,250, 244)
 background[9][1] = (250, 250, 0)
 background[9][20] = (0,0, 244)
-foreground= [[None for topdown in range(21)] for sidetoside in range(10)]
-foreground[4][5] = (255,255, 255)
+#foreground= [[None for topdown in range(21)] for sidetoside in range(10)]
+#foreground[4][5] = (255,255, 255)
 #make seperate forground for each piece and draw and erase accordingly to player input
 
-def drawalayer(layer):
-        for topdown in range(0,21):
-            for sidetoside in range(0,10):
+def drawalayer(layer, x_offset, y_offset): [[c,c]]5,3
+        for topdown in (y_offset, len(layer)):
+            for sidetoside in (x_offset, len(layer)):
                 if layer[sidetoside][topdown]!=None: 
                     pygame.draw.rect(surface, layer[sidetoside][topdown], ((sidetoside*SIZE1)+15,(topdown*SIZE1)+15, SIZE1-1, SIZE1-1))
-def movepiece():
+def upanddown():
         for topdown in range(19,-1,-1):
                 for sidetoside in range(0,10):
                         if foreground[sidetoside][topdown]!= None:
                                 foreground [sidetoside][topdown] = None                                                         
                                 foreground [sidetoside][topdown+1] = (255,0,0)
 
+def movement(e, Testbox):
+        if e.type == pygame.K_LEFT:
+                Testbox.shift(1, 0)
+        elif e.type == pygame.K_RIGHT:
+                Testbox.shift(-1, 0)
+        elif e.type == pygame.K_DOWN:
+                Testbox.shift(0, -1)
+        
+####
+
+class Piece:
+        def __init__(self, template):
+                self.shape = template
+                self.x = SIZE1/2
+                self.y = 0
+        def shift(self, dx, dy):
+                self.x += dx
+                self.y += dy
+        def draw(self):
+                drawalayer(self.shape, self.x, self.y)
 #Coding the Pieces In
 tetrimino = [[None for topdown in range(21)] for sidetoside in range(10)]
 tetrimino[5][0]=(145, 0, 226)
@@ -69,6 +89,10 @@ Lshape2[4][0]=(33, 62, 210)
 Lshape2[4][1]=(33, 62, 210)                              
 Lshape2[5][1]=(33, 62, 210)                        
 Lshape2[6][1]=(33, 62, 210)
+
+Testbox_shape = [[None for topdown in range(21)] for sidetoside in range(10)]
+Testbox_shape[0][0]=(33, 62, 210)
+Testbox = Piece(Testbox_shape)
 
 def nextpiece():
         futuredisplay = [[None for topdown1 in range(5)] for sidetoside1 in range(1)]
@@ -137,28 +161,21 @@ def ol():
         end_pos8= (645,745)
         width8 = 10
         pygame.draw.line(surface, color8, start_pos8, end_pos8, width8)
-
-def movingpieces():
-        for e in pygame.event.get():
-                if e.type ==pygame.QUIT:
-                        return
-                elif e.type == pygame.KEYDOWN:
-                        print(e.key)
-                        if e.key == K_LEFT:
-                                print ("I GOT THIS BOSS")
         
 
 while True:
         surface.fill((255,255,255))
         drawalayer(background)
-        movepiece()
-        drawalayer(Lshape2)
+       # upanddown()
         ol()
         nextpiece()
-        drawalayer(foreground)
+        Testbox.draw()
+       # drawalayer(foreground)
         pygame.display.flip()
-        movingpieces()
+       # lefttoright()
         clock.tick(60)                        
         for e in pygame.event.get():
                 if e.type == pygame.QUIT:
                         sys.exit(0)
+                movement(e)
+                        
