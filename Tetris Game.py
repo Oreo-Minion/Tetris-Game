@@ -7,18 +7,34 @@ SIZE1 = 40
 SIZE2 = 145
 background = [[None for topdown in range(21)] for sidetoside in range(10)]
 background[0][1] = (255,0, 0)
-background[0][20] = (0,250, 244)
+background[0][19] = (0,250, 244)
 background[9][1] = (250, 250, 0)
-background[9][20] = (0,0, 244)
+background[9][19] = (0,0, 244)
 #foreground= [[None for topdown in range(21)] for sidetoside in range(10)]
 #foreground[4][5] = (255,255, 255)
 #make seperate forground for each piece and draw and erase accordingly to player input
+##
+##
+##(x=3,y=2)
+##[ [x] ]
+##[?, ?, ?, ?, ?, ?]
+##[?, ?, x, ?, ?, ?]
+##[?, ?, ?, ?, ?, ?]
+##[?, ?, ?, ?, ?, ?]
+##[?, ?, ?, ?, ?, ?]
+##[?, ?, ?, ?, ?, ?]
+##[?, ?, ?, ?, ?, ?]
+##
+##move [0,0] to [3,2]
+##move [1,0] to [4,2]
+##move [0,1] to [3,3]
+##move [1,1] to [4,3]
 
-def drawalayer(layer, x_offset, y_offset): [[c,c]]5,3
-        for topdown in (y_offset, len(layer)):
-            for sidetoside in (x_offset, len(layer)):
-                if layer[sidetoside][topdown]!=None: 
-                    pygame.draw.rect(surface, layer[sidetoside][topdown], ((sidetoside*SIZE1)+15,(topdown*SIZE1)+15, SIZE1-1, SIZE1-1))
+def drawalayer(layer, x_offset, y_offset): #small , 3,2
+        for topdown in range(y_offset, len(layer)+y_offset): # 2
+            for sidetoside in range(x_offset, len(layer)+x_offset): #3
+                if layer[sidetoside-x_offset][topdown-y_offset]!=None: #small but needs to be in terms of big layer
+                    pygame.draw.rect(surface, layer[sidetoside-x_offset][topdown-y_offset], ((sidetoside*SIZE1)+15,(topdown*SIZE1)+15, SIZE1-1, SIZE1-1))
 def upanddown():
         for topdown in range(19,-1,-1):
                 for sidetoside in range(0,10):
@@ -39,7 +55,7 @@ def movement(e, Testbox):
 class Piece:
         def __init__(self, template):
                 self.shape = template
-                self.x = SIZE1/2
+                self.x = 5
                 self.y = 0
         def shift(self, dx, dy):
                 self.x += dx
@@ -165,7 +181,7 @@ def ol():
 
 while True:
         surface.fill((255,255,255))
-        drawalayer(background)
+        drawalayer(background,0,0)
        # upanddown()
         ol()
         nextpiece()
@@ -177,5 +193,8 @@ while True:
         for e in pygame.event.get():
                 if e.type == pygame.QUIT:
                         sys.exit(0)
-                movement(e)
+                movement(e, Testbox)
+                print ("hello")
+
+
                         
